@@ -8,6 +8,7 @@ import HomeView from './components/HomeView';
 import AboutView from './components/AboutView';
 import WorkView from './components/WorkView';
 import ProjectsView from './components/ProjectsView';
+import PortfolioProjectsView from './components/PortfolioProjectsView';
 import HobbiesView from './components/HobbiesView';
 import ContactModal from './components/ContactModal';
 
@@ -21,6 +22,7 @@ export default function App() {
     { key: 'Home', label: 'About' },
     { key: 'Work', label: 'Work' },
     { key: 'Education', label: 'Education' },
+    { key: 'Projects', label: 'Projects' },
     { key: 'Hobbies', label: 'Hobbies' }
   ];
 
@@ -177,6 +179,11 @@ export default function App() {
           {activeTab === 'Education' && (
             <motion.div key="view-Education" className="w-full">
               <ProjectsView />
+            </motion.div>
+          )}
+          {activeTab === 'Projects' && (
+            <motion.div key="view-Projects" className="w-full">
+              <PortfolioProjectsView />
             </motion.div>
           )}
           {activeTab === 'Hobbies' && (

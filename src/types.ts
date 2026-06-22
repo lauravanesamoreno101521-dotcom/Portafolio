@@ -1,4 +1,4 @@
-export type ActiveTab = 'Home' | 'Work' | 'Education' | 'Hobbies';
+export type ActiveTab = 'Home' | 'Work' | 'Education' | 'Projects' | 'Hobbies';
 
 export interface EducationItem {
   id: string;
