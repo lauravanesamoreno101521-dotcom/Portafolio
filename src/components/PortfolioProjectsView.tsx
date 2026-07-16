@@ -1,49 +1,44 @@
 import { motion } from 'motion/react';
-import { FlaskConical, Factory, ShieldCheck } from 'lucide-react';
+import { ExternalLink, Lock } from 'lucide-react';
 
-interface StarterProject {
+interface RealProject {
   id: string;
   title: string;
   status: string;
   description: string;
-  icon: 'flask' | 'factory' | 'shield';
+  image: string;
+  link: string | null;
+  lockedNote?: string;
 }
 
 export default function PortfolioProjectsView() {
-  const starterProjects: StarterProject[] = [
+  const realProjects: RealProject[] = [
     {
-      id: 'project-1',
-      title: 'Project Name 01',
-      status: 'In preparation',
-      description: 'Space reserved to add objectives, scope, and measurable results of the project.',
-      icon: 'flask'
+      id: 'project-sudoku',
+      title: 'Sudoku Infinity',
+      status: 'Live',
+      description: 'Interactive Sudoku game built with React, featuring real-time rule validation (rows, columns, and 3×3 blocks), a free play mode, and a registered mode to track streaks and rankings.',
+      image: '/images/project-sudoku-infinity.png',
+      link: 'https://sudoku-three-gray.vercel.app/'
     },
     {
-      id: 'project-2',
-      title: 'Project Name 02',
-      status: 'In preparation',
-      description: 'Space reserved to add methodology, responsibilities, and key achievements.',
-      icon: 'factory'
+      id: 'project-tablero-sgi',
+      title: 'Tablero de Control SGI — Emprestur',
+      status: 'Confidential',
+      description: 'Management System indicator dashboard for a transportation company: tracking findings, closure rate, internal/external audits, and monthly trends.',
+      image: '/images/project-tablero-control-sgi.png',
+      link: null,
+      lockedNote: 'Illustrative screenshot. No public access due to the confidentiality of the company’s data.'
     },
     {
-      id: 'project-3',
-      title: 'Project Name 03',
-      status: 'In preparation',
-      description: 'Space reserved to add operational impact, indicators, and lessons learned.',
-      icon: 'shield'
+      id: 'project-centro-control-sgi',
+      title: 'Centro de Control SGI',
+      status: 'Live',
+      description: 'Visual, interactive Management System panel (Quality, Environmental, Occupational Health & Safety, Road Safety), presenting modules and technical profiles in an engaging, easy-to-follow format.',
+      image: '/images/project-centro-control-sgi.png',
+      link: 'https://centro-de-control-sgi.vercel.app/'
     }
   ];
-
-  const getProjectIcon = (icon: StarterProject['icon']) => {
-    switch (icon) {
-      case 'flask':
-        return <FlaskConical className="w-6 h-6 text-secondary" />;
-      case 'factory':
-        return <Factory className="w-6 h-6 text-secondary" />;
-      default:
-        return <ShieldCheck className="w-6 h-6 text-secondary" />;
-    }
-  };
 
   return (
     <motion.div
@@ -60,35 +55,61 @@ export default function PortfolioProjectsView() {
             Professional <span className="text-secondary">Projects</span>
           </h1>
           <p className="text-on-surface-variant text-base md:text-lg leading-relaxed">
-            Dedicated section to document strategic and technical projects. This page is ready to be filled with your
-            real project information.
+            Selected projects combining data, software fundamentals, and quality/process management.
           </p>
         </div>
       </section>
 
       <section className="mb-10" id="projects-starter-grid-section">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="projects-starter-grid">
-          {starterProjects.map((project, idx) => (
+          {realProjects.map((project, idx) => (
             <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.45, delay: idx * 0.06 }}
-              className="glass-card glass-card-hover p-6 rounded-xl border border-outline-val/20"
+              className="glass-card glass-card-hover rounded-xl border border-outline-val/20 overflow-hidden flex flex-col"
               id={`starter-project-card-${project.id}`}
             >
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <div className="p-2.5 rounded-md bg-surface-high/40 border border-outline-val/20">
-                  {getProjectIcon(project.icon)}
-                </div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-secondary font-bold">
+              <div className="relative h-44 overflow-hidden bg-surface-high/40" id={`project-image-wrap-${project.id}`}>
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview screenshot`}
+                  className="w-full h-full object-cover object-top"
+                />
+                <span
+                  className={`absolute top-3 right-3 px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest border backdrop-blur-sm ${
+                    project.status === 'Confidential'
+                      ? 'text-tertiary border-tertiary/40 bg-background-dark/70'
+                      : 'text-secondary border-secondary/40 bg-background-dark/70'
+                  }`}
+                >
                   {project.status}
                 </span>
               </div>
 
-              <h3 className="font-sans text-xl font-bold text-on-surface mb-2">{project.title}</h3>
-              <p className="text-sm text-on-surface-variant leading-relaxed">{project.description}</p>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-sans text-xl font-bold text-on-surface mb-2">{project.title}</h3>
+                <p className="text-sm text-on-surface-variant leading-relaxed mb-4 flex-1">{project.description}</p>
+
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-secondary hover:text-on-surface transition-colors"
+                    id={`project-link-${project.id}`}
+                  >
+                    View Project <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                ) : (
+                  <div className="flex items-start gap-2 text-on-surface-variant/70" id={`project-locked-${project.id}`}>
+                    <Lock className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                    <span className="font-mono text-[11px] leading-relaxed">{project.lockedNote}</span>
+                  </div>
+                )}
+              </div>
             </motion.article>
           ))}
         </div>

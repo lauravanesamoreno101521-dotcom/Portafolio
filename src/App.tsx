@@ -58,8 +58,8 @@ export default function App() {
               <Terminal className="w-5 h-5" />
             </div>
             <div className="flex flex-col" id="logo-text">
-              <span className="font-sans font-extrabold text-sm tracking-wider text-on-surface uppercase block">ALEX_DEV.DATA</span>
-              <span className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase block -mt-1.5 font-medium">PRECISION CODES</span>
+              <span className="font-sans font-extrabold text-sm tracking-wider text-on-surface uppercase block">LAURA_MORENO.DATA</span>
+              <span className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase block -mt-1.5 font-medium">QUALITY TO DATA</span>
             </div>
           </div>
 
@@ -88,17 +88,6 @@ export default function App() {
               );
             })}
           </nav>
-
-          {/* Call-to-action button */}
-          <div className="hidden md:block" id="desktop-cta-btn-frame">
-            <button
-              id="header-btn-contact"
-              onClick={() => setIsContactOpen(true)}
-              className="border border-secondary/45 text-secondary font-mono text-[11px] font-bold uppercase tracking-widest py-2.5 px-5 bg-secondary/5 hover:bg-secondary hover:text-background-dark transition-all duration-300 rounded cursor-pointer flex items-center gap-1.5"
-            >
-              Get in touch <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
 
           {/* Burger icon (Mobile toggler) */}
           <div className="md:hidden" id="mobile-hamburger-frame">
@@ -140,18 +129,6 @@ export default function App() {
                   </button>
                 );
               })}
-              <div id="mobile-cta-btn-wrapper" className="pt-4 border-t border-outline-val/10">
-                <button
-                  id="mobile-btn-contact"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsContactOpen(true);
-                  }}
-                  className="w-full bg-secondary text-background-dark font-mono text-xs font-bold uppercase tracking-widest py-3 text-center rounded flex items-center justify-center gap-1.5 cursor-pointer"
-                >
-                  Get in touch <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
             </div>
           </motion.div>
         )}
@@ -204,12 +181,12 @@ export default function App() {
             
             {/* Left Copyright info */}
             <div className="md:col-span-5 flex flex-col md:items-start text-center md:text-left space-y-2" id="footer-brand-col">
-              <span className="font-sans font-extrabold text-sm tracking-wider uppercase text-on-surface">ALEX_DEV.DATA</span>
+              <span className="font-sans font-extrabold text-sm tracking-wider uppercase text-on-surface">LAURA_MORENO.DATA</span>
               <p className="text-xs text-on-surface-variant leading-relaxed max-w-sm">
-                Built and compiled by Alex. Syncing analytical structures with beautiful user views.
+                Built and maintained by Laura Moreno. Bridging food safety expertise with data-driven quality assurance.
               </p>
               <p className="text-[10px] font-mono text-on-surface-variant/40 pt-2">
-                &copy; {new Date().getFullYear()} ALEX_DEV.DATA. ALL RIGHTS RESERVED.
+                &copy; {new Date().getFullYear()} LAURA_MORENO.DATA. ALL RIGHTS RESERVED.
               </p>
             </div>
 

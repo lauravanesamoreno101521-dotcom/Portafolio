@@ -144,6 +144,13 @@ export default function ProjectsView() {
       category: 'English'
     },
     {
+      id: 'cert-python-fundamentals',
+      title: 'Python Fundamentals',
+      approvedDate: 'Approved on July 15, 2026',
+      platform: 'Platzi',
+      category: 'Software/Data'
+    },
+    {
       id: 'cert-software-fundamentals',
       title: 'Software Engineering Fundamentals',
       approvedDate: 'Approved on June 19, 2026',
