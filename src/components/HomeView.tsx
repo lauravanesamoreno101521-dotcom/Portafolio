@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Download, Linkedin, MapPin } from 'lucide-react';
 import { ActiveTab } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface HomeViewProps {
   onNavigate: (tab: ActiveTab) => void;
@@ -8,6 +9,7 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ onNavigate, onOpenContact }: HomeViewProps) {
+  const { t } = useLanguage();
   // Direct image links from HTML specs
   const headshotImgUrl = '/images/foto-laura-vanesa-moreno-betancur.jpg';
   
@@ -46,28 +48,28 @@ export default function HomeView({ onNavigate, onOpenContact }: HomeViewProps) {
               id="projects-status-badge"
             >
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-              <span className="font-mono text-xs text-secondary tracking-widest uppercase">PROFESSIONAL PROFILE</span>
+              <span className="font-mono text-xs text-secondary tracking-widest uppercase">{t.home.badge}</span>
             </motion.div>
 
             <h1 className="font-sans text-5xl md:text-6xl font-extrabold text-on-surface leading-tight tracking-tight" id="home-main-title">
-              Food Safety &amp; Quality <br />
-              <span className="text-secondary">Leader</span>
+              {t.home.titleLine1} <br />
+              <span className="text-secondary">{t.home.titleLine2}</span>
             </h1>
 
             <p className="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-3xl" id="home-profile-full-summary">
-              Industrial Chemistry professional with experience leading Food Safety, Quality, and Safety Assurance processes in the food and beverage industry. Specialist in implementing and strengthening management systems such as BRCGS, HACCP, GMP, Food Defense, and Food Fraud, with a focus on regulatory compliance, audits, and continuous improvement.
+              {t.home.summary}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2 w-full max-w-3xl border-t border-outline-val/20" id="home-profile-meta-grid">
               <div className="space-y-1 pt-4">
-                <span className="font-mono text-[11px] text-secondary/75 tracking-wider uppercase font-semibold">Specialty</span>
-                <p className="text-base text-on-surface font-semibold">BRCGS, HACCP and Food Safety Systems</p>
+                <span className="font-mono text-[11px] text-secondary/75 tracking-wider uppercase font-semibold">{t.home.specialtyLabel}</span>
+                <p className="text-base text-on-surface font-semibold">{t.home.specialtyValue}</p>
               </div>
               <div className="space-y-1 pt-4">
                 <span className="font-mono text-[11px] text-secondary/75 tracking-wider uppercase font-semibold flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5" /> Location
+                  <MapPin className="w-3.5 h-3.5" /> {t.home.locationLabel}
                 </span>
-                <p className="text-base text-on-surface font-semibold">Barranquilla / Atlántico</p>
+                <p className="text-base text-on-surface font-semibold">{t.home.locationValue}</p>
               </div>
             </div>
 
@@ -78,7 +80,7 @@ export default function HomeView({ onNavigate, onOpenContact }: HomeViewProps) {
                 className="border border-outline-val/50 text-on-surface px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:border-secondary hover:text-secondary glass-card hover:bg-surface-high/30 active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2"
               >
                 <ArrowRight className="w-4 h-4 text-secondary" />
-                View Experience
+                {t.home.btnViewExperience}
               </button>
               <button
                 id="btn-download-resume"
@@ -86,7 +88,7 @@ export default function HomeView({ onNavigate, onOpenContact }: HomeViewProps) {
                 className="border border-outline-val/50 text-on-surface px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:border-secondary hover:text-secondary glass-card hover:bg-surface-high/30 active:scale-95 transition-all duration-300 cursor-pointer flex items-center gap-2"
               >
                 <Download className="w-4 h-4 text-secondary" />
-                Download Resume
+                {t.home.btnDownloadResume}
               </button>
               <a
                 id="btn-linkedin-profile"
@@ -96,7 +98,7 @@ export default function HomeView({ onNavigate, onOpenContact }: HomeViewProps) {
                 className="border border-outline-val/50 text-on-surface px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:border-secondary hover:text-secondary glass-card hover:bg-surface-high/30 transition-all duration-300 cursor-pointer flex items-center gap-2"
               >
                 <Linkedin className="w-4 h-4 text-secondary" />
-                LinkedIn
+                {t.home.btnLinkedin}
               </a>
             </div>
 

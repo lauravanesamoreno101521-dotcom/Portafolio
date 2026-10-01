@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal, Menu, X, ArrowRight, Github, Mail, Linkedin, GitBranch, ShieldAlert } from 'lucide-react';
+import { Terminal, Menu, X, ArrowRight, Github, Mail, Linkedin, GitBranch, ShieldAlert, Languages } from 'lucide-react';
 import { ActiveTab } from './types';
+import { useLanguage } from './i18n/LanguageContext';
 
 // Importing Tab views
 import HomeView from './components/HomeView';
@@ -16,14 +17,15 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('Home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
   // Tabs structure
   const navigationTabs: { key: ActiveTab; label: string }[] = [
-    { key: 'Home', label: 'About' },
-    { key: 'Work', label: 'Work' },
-    { key: 'Education', label: 'Education' },
-    { key: 'Projects', label: 'Projects' },
-    { key: 'Hobbies', label: 'Hobbies' }
+    { key: 'Home', label: t.nav.about },
+    { key: 'Work', label: t.nav.work },
+    { key: 'Education', label: t.nav.education },
+    { key: 'Projects', label: t.nav.projects },
+    { key: 'Hobbies', label: t.nav.hobbies }
   ];
 
   // Underline position motion configuration helper
@@ -58,8 +60,8 @@ export default function App() {
               <Terminal className="w-5 h-5" />
             </div>
             <div className="flex flex-col" id="logo-text">
-              <span className="font-sans font-extrabold text-sm tracking-wider text-on-surface uppercase block">LAURA_MORENO.DATA</span>
-              <span className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase block -mt-1.5 font-medium">QUALITY TO DATA</span>
+              <span className="font-sans font-extrabold text-sm tracking-wider text-on-surface uppercase block">{t.header.brandName}</span>
+              <span className="font-mono text-[9px] text-on-surface-variant tracking-widest uppercase block -mt-1.5 font-medium">{t.header.brandTag}</span>
             </div>
           </div>
 
@@ -88,6 +90,17 @@ export default function App() {
               );
             })}
           </nav>
+
+          {/* Language Toggle */}
+          <button
+            id="btn-language-toggle"
+            onClick={toggleLanguage}
+            title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            className="hidden md:flex items-center gap-1.5 px-3 py-2 ml-2 border border-outline-val/30 rounded font-mono text-[11px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-secondary hover:border-secondary transition-colors cursor-pointer"
+          >
+            <Languages className="w-3.5 h-3.5" />
+            {language === 'es' ? 'EN' : 'ES'}
+          </button>
 
           {/* Burger icon (Mobile toggler) */}
           <div className="md:hidden" id="mobile-hamburger-frame">
@@ -129,6 +142,14 @@ export default function App() {
                   </button>
                 );
               })}
+              <button
+                id="mobile-language-toggle"
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 w-full text-left font-mono text-xs font-bold uppercase tracking-wider py-2.5 px-4 rounded text-on-surface-variant hover:text-white"
+              >
+                <Languages className="w-4 h-4" />
+                {language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+              </button>
             </div>
           </motion.div>
         )}
@@ -181,12 +202,12 @@ export default function App() {
             
             {/* Left Copyright info */}
             <div className="md:col-span-5 flex flex-col md:items-start text-center md:text-left space-y-2" id="footer-brand-col">
-              <span className="font-sans font-extrabold text-sm tracking-wider uppercase text-on-surface">LAURA_MORENO.DATA</span>
+              <span className="font-sans font-extrabold text-sm tracking-wider uppercase text-on-surface">{t.footer.brandName}</span>
               <p className="text-xs text-on-surface-variant leading-relaxed max-w-sm">
-                Built and maintained by Laura Moreno. Bridging food safety expertise with data-driven quality assurance.
+                {t.footer.tagline}
               </p>
               <p className="text-[10px] font-mono text-on-surface-variant/40 pt-2">
-                &copy; {new Date().getFullYear()} LAURA_MORENO.DATA. ALL RIGHTS RESERVED.
+                &copy; {new Date().getFullYear()} {t.footer.brandName}. {t.footer.rights}
               </p>
             </div>
 
@@ -197,7 +218,7 @@ export default function App() {
                 onClick={() => setIsContactOpen(true)}
                 className="font-mono text-xs font-bold text-secondary hover:text-white uppercase tracking-widest cursor-pointer transition-colors"
               >
-                COLLABORATE
+                {language === 'es' ? 'COLABOREMOS' : 'COLLABORATE'}
               </button>
             </div>
 
@@ -205,18 +226,18 @@ export default function App() {
             <div className="md:col-span-5 flex flex-col md:items-end items-center space-y-4" id="footer-coordinates-col">
               
               <div className="flex gap-4" id="social-icons">
-                <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noreferrer" 
+                <a
+                  href="https://github.com/lauravanesamoreno101521-dotcom"
+                  target="_blank"
+                  rel="noreferrer"
                   className="p-2 bg-surface-low border border-outline-val/20 hover:border-secondary hover:text-secondary rounded transition-colors text-on-surface-variant"
                   title="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
                 </a>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/laura-moreno-betancur-4aa7b0284/"
+                  target="_blank"
                   rel="noreferrer" 
                   className="p-2 bg-surface-low border border-outline-val/20 hover:border-secondary hover:text-secondary rounded transition-colors text-on-surface-variant"
                   title="LinkedIn Profile"

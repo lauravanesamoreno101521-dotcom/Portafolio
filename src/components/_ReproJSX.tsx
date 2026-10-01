@@ -1,21 +1,9 @@
+// scratch debugging file, not imported anywhere, safe to delete manually
 import { motion } from 'motion/react';
 import { ExternalLink, Lock } from 'lucide-react';
-import { useLanguage } from '../i18n/LanguageContext';
 
-// Language-agnostic metadata, matched by index to t.projects.items
-const projectMeta = [
-  { id: 'project-sudoku', image: '/images/project-sudoku-infinity.png', link: 'https://sudoku-three-gray.vercel.app/' },
-  { id: 'project-tablero-sgi', image: '/images/project-tablero-control-sgi.png', link: null },
-  { id: 'project-centro-control-sgi', image: '/images/project-centro-control-sgi.png', link: 'https://centro-de-control-sgi.vercel.app/' },
-  { id: 'project-safi', image: '/images/project-safi.png', link: 'https://safi-gamma.vercel.app/' },
-  { id: 'project-textilepro', image: '/images/project-textilepro.png', link: 'https://textil-pro-psi.vercel.app/' }
-];
-
-export default function PortfolioProjectsView() {
-  const { t } = useLanguage();
-  const p = t.projects;
-  const realProjects = p.items.map((item, idx) => ({ ...item, ...projectMeta[idx] }));
-
+export default function ReproJSX() {
+  const realProjects: any[] = [];
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -28,10 +16,10 @@ export default function PortfolioProjectsView() {
       <section className="mb-14 pt-4" id="projects-hero-header">
         <div className="max-w-3xl">
           <h1 className="font-sans text-5xl font-extrabold text-on-surface mb-6">
-            {p.headingLine1} <span className="text-secondary">{p.headingHighlight}</span>
+            Professional <span className="text-secondary">Projects</span>
           </h1>
           <p className="text-on-surface-variant text-base md:text-lg leading-relaxed">
-            {p.subtitle}
+            Selected projects combining data, software fundamentals, and quality/process management.
           </p>
         </div>
       </section>
@@ -56,7 +44,7 @@ export default function PortfolioProjectsView() {
                 />
                 <span
                   className={`absolute top-3 right-3 px-2.5 py-1 rounded font-mono text-[10px] uppercase tracking-widest border backdrop-blur-sm ${
-                    project.status === p.statusConfidential
+                    project.status === 'Confidential'
                       ? 'text-tertiary border-tertiary/40 bg-background-dark/70'
                       : 'text-secondary border-secondary/40 bg-background-dark/70'
                   }`}
@@ -67,18 +55,7 @@ export default function PortfolioProjectsView() {
 
               <div className="p-6 flex flex-col flex-1">
                 <h3 className="font-sans text-xl font-bold text-on-surface mb-2">{project.title}</h3>
-                <p className="text-sm text-on-surface-variant leading-relaxed mb-3 flex-1">{project.description}</p>
-
-                <div className="flex flex-wrap gap-1.5 mb-4" id={`project-stack-${project.id}`}>
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-surface-low rounded font-mono text-[10px] text-on-surface-variant border border-outline-val/15"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-sm text-on-surface-variant leading-relaxed mb-4 flex-1">{project.description}</p>
 
                 {project.link ? (
                   <a
@@ -88,12 +65,12 @@ export default function PortfolioProjectsView() {
                     className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-secondary hover:text-on-surface transition-colors"
                     id={`project-link-${project.id}`}
                   >
-                    {p.viewProject} <ExternalLink className="w-3.5 h-3.5" />
+                    View Project <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 ) : (
                   <div className="flex items-start gap-2 text-on-surface-variant/70" id={`project-locked-${project.id}`}>
                     <Lock className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                    <span className="font-mono text-[11px] leading-relaxed">{('lockedNote' in project) ? project.lockedNote : ''}</span>
+                    <span className="font-mono text-[11px] leading-relaxed">{project.lockedNote}</span>
                   </div>
                 )}
               </div>

@@ -1,172 +1,12 @@
 import { motion } from 'motion/react';
 import { Beaker, Leaf, Palette, Droplets, GraduationCap, Terminal as TerminalIcon, Award } from 'lucide-react';
-import { EducationItem } from '../types';
-
-interface ProjectItem {
-  id: string;
-  year: string;
-  title: string;
-  course: string;
-  description: string;
-  icon: 'leaf' | 'palette' | 'droplets' | 'beaker';
-}
-
-interface CertificationItem {
-  id: string;
-  title: string;
-  approvedDate: string;
-  platform: string;
-  category: 'English' | 'Software/Data';
-}
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ProjectsView() {
-  const educationHistory: EducationItem[] = [
-    {
-      id: 'edu-0g',
-      years: '2022',
-      degree: 'Industrial Chemistry',
-      description: 'ITM Metropolitan Technological Institute, Medellín, Antioquia.',
-      icon: 'school',
-      techStackTitle: 'Institution',
-      techStack: 'ITM Metropolitan Technological Institute'
-    },
-    {
-      id: 'edu-0f',
-      years: '2021',
-      degree: 'Training in "Nano-Biolubricants"',
-      description: 'Training Cycles "Young ITM Researchers and Innovators 2021".',
-      icon: 'school',
-      techStackTitle: 'Institution',
-      techStack: 'ITM Metropolitan Technical Institute'
-    },
-    {
-      id: 'edu-0e',
-      years: '2021',
-      degree: 'Training Course in Latex Utilization, Properties, Applications, and State of the Art',
-      description: 'ITM Metropolitan Technical Institute.',
-      icon: 'school',
-      techStackTitle: 'Institution',
-      techStack: 'ITM Metropolitan Technical Institute'
-    },
-    {
-      id: 'edu-0d',
-      years: '2015',
-      degree: 'Diploma in Artisan Bakery and Pastry',
-      description: 'PONAC National Polytechnic, Manizales, Caldas.',
-      icon: 'verified',
-      techStackTitle: 'Institution',
-      techStack: 'PONAC National Polytechnic'
-    },
-    {
-      id: 'edu-0c',
-      years: '2015',
-      degree: 'Vocational Technician in Gastronomic Cooking',
-      description: 'Manizales, Caldas.',
-      icon: 'verified',
-      techStackTitle: 'Program',
-      techStack: 'Gastronomic Cooking'
-    },
-    {
-      id: 'edu-0b',
-      years: '2013',
-      degree: 'Systems Technician',
-      description: 'SENA National Learning Service, Villamaría, Caldas.',
-      icon: 'terminal',
-      techStackTitle: 'Institution',
-      techStack: 'SENA'
-    },
-    {
-      id: 'edu-0',
-      years: '2013',
-      degree: 'Technical High School Diploma',
-      description: 'Santa Luisa de Marillac Educational Institution, Villamaría, Caldas.',
-      icon: 'school',
-      techStackTitle: 'Institution',
-      techStack: 'Santa Luisa de Marillac'
-    }
-  ];
+  const { t } = useLanguage();
+  const edu = t.education;
 
-  const classroomProjects: ProjectItem[] = [
-    {
-      id: 'proj-1',
-      year: '2020',
-      title: 'Biodegradable Polymer from Avocado Seed',
-      course: 'Classroom Project',
-      description: 'Post-harvest product utilization for the development of biodegradable materials.',
-      icon: 'leaf'
-    },
-    {
-      id: 'proj-2',
-      year: '2020',
-      title: 'Cosmetic and Pharmaceutical Products',
-      course: 'With Professor Guillermo Sánchez Sánchez',
-      description: 'Product formulation and analysis in an academic context, focused on quality and industrial application.',
-      icon: 'beaker'
-    },
-    {
-      id: 'proj-3',
-      year: '2018',
-      title: 'Natural Dye Extraction',
-      course: 'Industrial Organic Chemistry - Professor Juliana Nanclares',
-      description: 'Extraction and evaluation of dyes using naturally sourced materials.',
-      icon: 'palette'
-    },
-    {
-      id: 'proj-4',
-      year: '2017',
-      title: 'Water Purification',
-      course: 'Analytical Chemistry - Professor Juliana Nanclares',
-      description: 'Development of a water purification process as a university laboratory practice.',
-      icon: 'droplets'
-    }
-  ];
-
-  const recentCertifications: CertificationItem[] = [
-    {
-      id: 'cert-english-present-simple',
-      title: 'Basic English Course A1: Present Simple',
-      approvedDate: 'Approved on June 19, 2026',
-      platform: 'Platzi',
-      category: 'English'
-    },
-    {
-      id: 'cert-english-verb-to-be',
-      title: 'Basic English Course A1: Verb To Be',
-      approvedDate: 'Approved on June 18, 2026',
-      platform: 'Platzi',
-      category: 'English'
-    },
-    {
-      id: 'cert-english-beginners',
-      title: 'Basic English Course A1 for Beginners',
-      approvedDate: 'Approved on June 16, 2026',
-      platform: 'Platzi',
-      category: 'English'
-    },
-    {
-      id: 'cert-python-fundamentals',
-      title: 'Python Fundamentals',
-      approvedDate: 'Approved on July 15, 2026',
-      platform: 'Platzi',
-      category: 'Software/Data'
-    },
-    {
-      id: 'cert-software-fundamentals',
-      title: 'Software Engineering Fundamentals',
-      approvedDate: 'Approved on June 19, 2026',
-      platform: 'Platzi',
-      category: 'Software/Data'
-    },
-    {
-      id: 'cert-data-fundamentals',
-      title: 'Data Engineering Fundamentals',
-      approvedDate: 'Approved on June 19, 2026',
-      platform: 'Platzi',
-      category: 'Software/Data'
-    }
-  ];
-
-  const getProjectIcon = (iconName: ProjectItem['icon']) => {
+  const getProjectIcon = (iconName: string) => {
     switch (iconName) {
       case 'leaf':
         return <Leaf className="w-6 h-6 text-secondary" />;
@@ -179,10 +19,10 @@ export default function ProjectsView() {
     }
   };
 
-  const getEduIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'school':
-        return <GraduationCap className="w-8 h-8 text-secondary shrink-0" />;
+  const getEduIcon = (idx: number) => {
+    // Preserve original icon assignment by index (school/terminal/verified pattern)
+    const iconMap = ['school', 'school', 'school', 'verified', 'verified', 'terminal', 'school'];
+    switch (iconMap[idx]) {
       case 'terminal':
         return <TerminalIcon className="w-8 h-8 text-secondary shrink-0" />;
       case 'verified':
@@ -204,33 +44,33 @@ export default function ProjectsView() {
       <section className="mb-14 pt-4" id="education-hero-header">
         <div className="max-w-3xl">
           <h1 className="font-sans text-5xl font-extrabold text-on-surface mb-6">
-            Academic <span className="text-secondary">Education</span>
+            {edu.headingLine1} <span className="text-secondary">{edu.headingHighlight}</span>
           </h1>
           <p className="text-on-surface-variant text-base md:text-lg leading-relaxed">
-            Academic and technical background, followed by classroom projects developed during the degree.
+            {edu.subtitle}
           </p>
         </div>
       </section>
 
       <section className="bg-surface-low border border-outline-val/10 rounded-xl py-12 md:py-16 px-6 md:px-10 mb-16" id="education-timeline-section">
         <div className="text-center max-w-xl mx-auto mb-16">
-          <span className="font-mono text-xs text-secondary tracking-widest font-semibold uppercase block mb-2">Education Path</span>
-          <h2 className="font-sans text-3xl font-extrabold text-on-surface">Academic Journey</h2>
+          <span className="font-mono text-xs text-secondary tracking-widest font-semibold uppercase block mb-2">{edu.pathLabel}</span>
+          <h2 className="font-sans text-3xl font-extrabold text-on-surface">{edu.pathHeading}</h2>
           <p className="text-on-surface-variant text-sm mt-3 leading-relaxed">
-            Timeline of academic, technical, and complementary training.
+            {edu.pathSubtitle}
           </p>
         </div>
 
         <div className="relative" id="timeline-flow-box">
           <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-[85%] timeline-line opacity-25 hidden md:block"></div>
           <div className="space-y-12 relative" id="timeline-roadmap-items">
-            {educationHistory.map((item, idx) => (
+            {edu.history.map((item, idx) => (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                key={item.id}
+                key={item.degree}
                 className={`relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
                 id={`timeline-row-${idx}`}
               >
@@ -244,7 +84,7 @@ export default function ProjectsView() {
 
                 <div className={`${idx % 2 === 0 ? 'md:pl-12' : 'md:order-1 md:pr-12'}`} id={`feature-col-${idx}`}>
                   <div className="glass-card glass-card-hover p-6 rounded-lg flex items-start gap-4" id={`glass-edu-card-${idx}`}>
-                    {getEduIcon(item.icon)}
+                    {getEduIcon(idx)}
                     <div>
                       <p className="font-mono text-xs text-secondary/80 font-bold tracking-widest uppercase">{item.techStackTitle}</p>
                       <p className="text-sm font-semibold text-on-surface mt-1">{item.techStack}</p>
@@ -260,23 +100,23 @@ export default function ProjectsView() {
       <section className="mb-14" id="recent-certifications-section">
         <div className="mb-8">
           <h2 className="font-sans text-3xl font-extrabold text-on-surface mb-2">
-            Recent <span className="text-secondary">Certifications</span>
+            {edu.certHeadingLine1} <span className="text-secondary">{edu.certHeadingHighlight}</span>
           </h2>
           <p className="text-on-surface-variant text-sm md:text-base">
-            Latest certifications in English and software/data fundamentals.
+            {edu.certSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="certifications-grid">
-          {recentCertifications.map((cert, idx) => (
+          {edu.certifications.map((cert, idx) => (
             <motion.article
-              key={cert.id}
+              key={cert.title}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.45, delay: idx * 0.05 }}
               className="glass-card glass-card-hover p-6 rounded-xl border border-outline-val/20"
-              id={`cert-card-${cert.id}`}
+              id={`cert-card-${idx}`}
             >
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-secondary font-bold">
@@ -284,7 +124,7 @@ export default function ProjectsView() {
                 </span>
                 <span
                   className={`px-2 py-0.5 rounded font-mono text-[10px] uppercase tracking-widest border ${
-                    cert.category === 'English'
+                    cert.category === 'English' || cert.category === 'Inglés'
                       ? 'text-secondary border-secondary/35 bg-secondary/10'
                       : 'text-tertiary border-tertiary/35 bg-tertiary/10'
                   }`}
@@ -305,23 +145,23 @@ export default function ProjectsView() {
       <section className="mb-10" id="projects-classroom-section">
         <div className="mb-8">
           <h2 className="font-sans text-3xl font-extrabold text-on-surface mb-2">
-            Classroom <span className="text-secondary">Projects</span>
+            {edu.classroomHeadingLine1} <span className="text-secondary">{edu.classroomHeadingHighlight}</span>
           </h2>
           <p className="text-on-surface-variant text-sm md:text-base">
-            Applied industrial chemistry projects developed during the academic stage.
+            {edu.classroomSubtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
-        {classroomProjects.map((project, idx) => (
+        {edu.classroomProjects.map((project, idx) => (
           <motion.article
-            key={project.id}
+            key={project.title}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: idx * 0.06 }}
             className="glass-card glass-card-hover p-6 rounded-xl border border-outline-val/20"
-            id={`project-card-${project.id}`}
+            id={`project-card-${idx}`}
           >
             <div className="flex items-start justify-between gap-4 mb-4">
               <div className="p-2.5 rounded-md bg-surface-high/40 border border-outline-val/20">
