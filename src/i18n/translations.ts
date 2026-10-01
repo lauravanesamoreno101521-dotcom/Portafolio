@@ -121,6 +121,7 @@ export const translations = {
       certHeadingHighlight: 'Certifications',
       certSubtitle: 'Latest certifications in English and software/data fundamentals.',
       certifications: [
+        { title: 'Claude Code Course', approvedDate: 'Approved in July 2026', platform: 'Platzi', category: 'Software/Data' },
         { title: 'Basic English Course A1: Present Simple', approvedDate: 'Approved on June 19, 2026', platform: 'Platzi', category: 'English' },
         { title: 'Basic English Course A1: Verb To Be', approvedDate: 'Approved on June 18, 2026', platform: 'Platzi', category: 'English' },
         { title: 'Basic English Course A1 for Beginners', approvedDate: 'Approved on June 16, 2026', platform: 'Platzi', category: 'English' },
@@ -328,6 +329,7 @@ export const translations = {
       certHeadingHighlight: 'Recientes',
       certSubtitle: 'Últimas certificaciones en inglés y fundamentos de software/datos.',
       certifications: [
+        { title: 'Curso de Claude Code', approvedDate: 'Aprobado en julio de 2026', platform: 'Platzi', category: 'Software/Datos' },
         { title: 'Curso de Inglés Básico A1: Present Simple', approvedDate: 'Aprobado el 19 de junio de 2026', platform: 'Platzi', category: 'Inglés' },
         { title: 'Curso de Inglés Básico A1: Verb To Be', approvedDate: 'Aprobado el 18 de junio de 2026', platform: 'Platzi', category: 'Inglés' },
         { title: 'Curso de Inglés Básico A1 para Principiantes', approvedDate: 'Aprobado el 16 de junio de 2026', platform: 'Platzi', category: 'Inglés' },
